@@ -53,10 +53,7 @@
             async fetchData(pair) {
                 if (pair) {
                     const data = await makeSimpleRequest(`trade/bucketed?binSize=1m&partial=false&count=100&reverse=true&symbol=${pair}`);
-                    this.itemsQuotes = [];
-                    data.forEach((item) => {
-                        this.itemsQuotes.push(this.getQuoteItem(item))
-                    });
+                    this.itemsQuotes = data.map(item => this.getQuoteItem(item));
 
                     if (this.socket) {
                         this.socket.close();

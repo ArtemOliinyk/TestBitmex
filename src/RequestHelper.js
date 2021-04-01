@@ -31,8 +31,7 @@ export const makeRequestAuth = async (path, method, body) => {
             'api-key': apiKey,
             'api-signature': signature
         },
-        body: body
-
+        body
     };
     return (await fetch(`/api/v1/${path}`, requestOptions)).json();
 };

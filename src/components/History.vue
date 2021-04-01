@@ -30,16 +30,16 @@
 
         async mounted() {
             const data = await makeRequestAuth("order", "GET");
-            data.forEach(({timestamp, orderID, symbol, orderQty, side, price, ordStatus}) => {
-                this.itemsHistory.push({
+            this.itemsHistory = data.map(({timestamp, orderID, symbol, orderQty, side, price, ordStatus}) => {
+                return {
                     timestamp: new Date(timestamp).toLocaleTimeString(),
                     orderID,
                     symbol,
                     orderQty,
                     side,
                     price,
-                    ordStatus,
-                })
+                    ordStatus
+                }
             });
         }
     }
